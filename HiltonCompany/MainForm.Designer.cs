@@ -29,9 +29,11 @@ namespace HiltonCompany
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.workPanel = new System.Windows.Forms.Panel();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.timerLabel = new System.Windows.Forms.Label();
             this.goToEmployees = new FontAwesome.Sharp.IconButton();
             this.goToGuests = new FontAwesome.Sharp.IconButton();
             this.goToOrders = new FontAwesome.Sharp.IconButton();
@@ -39,18 +41,21 @@ namespace HiltonCompany
             this.goToHome = new FontAwesome.Sharp.IconButton();
             this.mainLogo = new System.Windows.Forms.PictureBox();
             this.headPanel = new System.Windows.Forms.Panel();
-            this.helloPanel = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.logoLabel = new System.Windows.Forms.Label();
+            this.loginPanel = new System.Windows.Forms.Panel();
+            this.myName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.goToLogOut = new FontAwesome.Sharp.IconButton();
             this.goToLogIn = new FontAwesome.Sharp.IconButton();
             this.goToMaximizedApp = new FontAwesome.Sharp.IconButton();
             this.goToExitApp = new FontAwesome.Sharp.IconButton();
-            this.logoLabel = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.goToSettings = new FontAwesome.Sharp.IconButton();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainLogo)).BeginInit();
             this.headPanel.SuspendLayout();
-            this.helloPanel.SuspendLayout();
+            this.loginPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // workPanel
@@ -65,6 +70,8 @@ namespace HiltonCompany
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(179)))), ((int)(((byte)(247)))));
+            this.menuPanel.Controls.Add(this.goToSettings);
+            this.menuPanel.Controls.Add(this.timerLabel);
             this.menuPanel.Controls.Add(this.goToEmployees);
             this.menuPanel.Controls.Add(this.goToGuests);
             this.menuPanel.Controls.Add(this.goToOrders);
@@ -76,6 +83,18 @@ namespace HiltonCompany
             this.menuPanel.Name = "menuPanel";
             this.menuPanel.Size = new System.Drawing.Size(230, 740);
             this.menuPanel.TabIndex = 7;
+            // 
+            // timerLabel
+            // 
+            this.timerLabel.AutoSize = true;
+            this.timerLabel.Font = new System.Drawing.Font("Segoe UI", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.timerLabel.Location = new System.Drawing.Point(12, 597);
+            this.timerLabel.MaximumSize = new System.Drawing.Size(169, 80);
+            this.timerLabel.Name = "timerLabel";
+            this.timerLabel.Size = new System.Drawing.Size(169, 80);
+            this.timerLabel.TabIndex = 103;
+            this.timerLabel.Text = "15 января, 23:45:20";
             // 
             // goToEmployees
             // 
@@ -98,6 +117,7 @@ namespace HiltonCompany
             this.goToEmployees.Text = "Сотрудники";
             this.goToEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToEmployees.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToEmployees, "Перейти на страницу данных сотрудников");
             this.goToEmployees.UseVisualStyleBackColor = true;
             this.goToEmployees.Visible = false;
             this.goToEmployees.Click += new System.EventHandler(this.goToEmployees_Click);
@@ -123,6 +143,7 @@ namespace HiltonCompany
             this.goToGuests.Text = "Клиенты";
             this.goToGuests.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToGuests.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToGuests, "Перейти на страницу данных клиентов");
             this.goToGuests.UseVisualStyleBackColor = true;
             this.goToGuests.Visible = false;
             this.goToGuests.Click += new System.EventHandler(this.goToGuests_Click);
@@ -148,6 +169,7 @@ namespace HiltonCompany
             this.goToOrders.Text = "Заказы";
             this.goToOrders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToOrders, "Перейти на страницу заказов клиентов");
             this.goToOrders.UseVisualStyleBackColor = true;
             this.goToOrders.Visible = false;
             this.goToOrders.Click += new System.EventHandler(this.goToOrders_Click);
@@ -173,6 +195,7 @@ namespace HiltonCompany
             this.goToHotelRooms.Text = "Номера";
             this.goToHotelRooms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToHotelRooms.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToHotelRooms, "Перейти на страницу номеров");
             this.goToHotelRooms.UseVisualStyleBackColor = true;
             this.goToHotelRooms.Click += new System.EventHandler(this.goToHotelRooms_Click);
             // 
@@ -197,6 +220,7 @@ namespace HiltonCompany
             this.goToHome.Text = "Главная";
             this.goToHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToHome, "Перейти на главную страницу");
             this.goToHome.UseVisualStyleBackColor = true;
             this.goToHome.Click += new System.EventHandler(this.goToHome_Click);
             // 
@@ -217,8 +241,7 @@ namespace HiltonCompany
             // 
             this.headPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
             this.headPanel.Controls.Add(this.logoLabel);
-            this.headPanel.Controls.Add(this.helloPanel);
-            this.headPanel.Controls.Add(this.goToLogOut);
+            this.headPanel.Controls.Add(this.loginPanel);
             this.headPanel.Controls.Add(this.goToLogIn);
             this.headPanel.Controls.Add(this.goToMaximizedApp);
             this.headPanel.Controls.Add(this.goToExitApp);
@@ -230,63 +253,83 @@ namespace HiltonCompany
             this.headPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseDown);
             this.headPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseMove);
             // 
-            // helloPanel
+            // logoLabel
             // 
-            this.helloPanel.Controls.Add(this.label3);
-            this.helloPanel.Controls.Add(this.label4);
-            this.helloPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.helloPanel.Location = new System.Drawing.Point(430, 0);
-            this.helloPanel.Name = "helloPanel";
-            this.helloPanel.Size = new System.Drawing.Size(250, 60);
-            this.helloPanel.TabIndex = 102;
-            this.helloPanel.Visible = false;
+            this.logoLabel.AutoSize = true;
+            this.logoLabel.Font = new System.Drawing.Font("Segoe UI", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.logoLabel.Location = new System.Drawing.Point(17, 9);
+            this.logoLabel.Name = "logoLabel";
+            this.logoLabel.Size = new System.Drawing.Size(258, 40);
+            this.logoLabel.TabIndex = 5;
+            this.logoLabel.Text = "Hilton Worldwide";
+            this.logoLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseDown);
+            this.logoLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseMove);
             // 
-            // label3
+            // loginPanel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
-            this.label3.Location = new System.Drawing.Point(3, 27);
-            this.label3.MaximumSize = new System.Drawing.Size(200, 88);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 24);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Евгений!";
+            this.loginPanel.Controls.Add(this.myName);
+            this.loginPanel.Controls.Add(this.label4);
+            this.loginPanel.Controls.Add(this.goToLogOut);
+            this.loginPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.loginPanel.Location = new System.Drawing.Point(524, 0);
+            this.loginPanel.Name = "loginPanel";
+            this.loginPanel.Size = new System.Drawing.Size(356, 60);
+            this.loginPanel.TabIndex = 102;
+            this.loginPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseDown);
+            this.loginPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseMove);
+            // 
+            // myName
+            // 
+            this.myName.AutoSize = true;
+            this.myName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.myName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.myName.Location = new System.Drawing.Point(2, 30);
+            this.myName.MaximumSize = new System.Drawing.Size(200, 88);
+            this.myName.Name = "myName";
+            this.myName.Size = new System.Drawing.Size(100, 24);
+            this.myName.TabIndex = 4;
+            this.myName.Text = "Евгений!";
+            this.myName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseDown);
+            this.myName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseMove);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
-            this.label4.Location = new System.Drawing.Point(3, 9);
+            this.label4.Location = new System.Drawing.Point(3, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 18);
             this.label4.TabIndex = 3;
             this.label4.Text = "Приветствуем Вас,";
+            this.label4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseDown);
+            this.label4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseMove);
             // 
             // goToLogOut
             // 
+            this.goToLogOut.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.goToLogOut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.goToLogOut.Dock = System.Windows.Forms.DockStyle.Right;
             this.goToLogOut.FlatAppearance.BorderSize = 0;
             this.goToLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.goToLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToLogOut.ForeColor = System.Drawing.Color.White;
-            this.goToLogOut.IconChar = FontAwesome.Sharp.IconChar.AddressCard;
+            this.goToLogOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.goToLogOut.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
             this.goToLogOut.IconColor = System.Drawing.Color.White;
             this.goToLogOut.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToLogOut.IconSize = 32;
             this.goToLogOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToLogOut.Location = new System.Drawing.Point(680, 0);
+            this.goToLogOut.Location = new System.Drawing.Point(191, 0);
             this.goToLogOut.Name = "goToLogOut";
             this.goToLogOut.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
-            this.goToLogOut.Size = new System.Drawing.Size(200, 60);
+            this.goToLogOut.Size = new System.Drawing.Size(141, 60);
             this.goToLogOut.TabIndex = 101;
-            this.goToLogOut.Text = "Выйти";
+            this.goToLogOut.Text = "ВЫЙТИ";
             this.goToLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToLogOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToLogOut, "Выйти из системы");
             this.goToLogOut.UseVisualStyleBackColor = true;
-            this.goToLogOut.Visible = false;
+            this.goToLogOut.Click += new System.EventHandler(this.goToLogOut_Click);
             // 
             // goToLogIn
             // 
@@ -296,7 +339,7 @@ namespace HiltonCompany
             this.goToLogIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.goToLogIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.goToLogIn.ForeColor = System.Drawing.Color.White;
-            this.goToLogIn.IconChar = FontAwesome.Sharp.IconChar.AddressCard;
+            this.goToLogIn.IconChar = FontAwesome.Sharp.IconChar.SignInAlt;
             this.goToLogIn.IconColor = System.Drawing.Color.White;
             this.goToLogIn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToLogIn.IconSize = 32;
@@ -309,7 +352,9 @@ namespace HiltonCompany
             this.goToLogIn.Text = "Войти";
             this.goToLogIn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToLogIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToLogIn, "Авторизироваться в систему");
             this.goToLogIn.UseVisualStyleBackColor = true;
+            this.goToLogIn.Visible = false;
             this.goToLogIn.Click += new System.EventHandler(this.goToLogIn_Click);
             // 
             // goToMaximizedApp
@@ -331,6 +376,7 @@ namespace HiltonCompany
             this.goToMaximizedApp.Size = new System.Drawing.Size(60, 60);
             this.goToMaximizedApp.TabIndex = 26;
             this.goToMaximizedApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToMaximizedApp, "Свернуть приложение");
             this.goToMaximizedApp.UseVisualStyleBackColor = true;
             this.goToMaximizedApp.Click += new System.EventHandler(this.goToMaximizedApp_Click);
             // 
@@ -353,19 +399,39 @@ namespace HiltonCompany
             this.goToExitApp.Size = new System.Drawing.Size(60, 60);
             this.goToExitApp.TabIndex = 24;
             this.goToExitApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToExitApp, "Завершить работу приложения");
             this.goToExitApp.UseVisualStyleBackColor = true;
             this.goToExitApp.Click += new System.EventHandler(this.goToExitApp_Click);
             // 
-            // logoLabel
+            // timer
             // 
-            this.logoLabel.AutoSize = true;
-            this.logoLabel.Font = new System.Drawing.Font("Segoe UI", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
-            this.logoLabel.Location = new System.Drawing.Point(17, 9);
-            this.logoLabel.Name = "logoLabel";
-            this.logoLabel.Size = new System.Drawing.Size(258, 40);
-            this.logoLabel.TabIndex = 5;
-            this.logoLabel.Text = "Hilton Worldwide";
+            this.timer.Enabled = true;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // goToSettings
+            // 
+            this.goToSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goToSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.goToSettings.FlatAppearance.BorderSize = 0;
+            this.goToSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goToSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
+            this.goToSettings.IconChar = FontAwesome.Sharp.IconChar.EllipsisV;
+            this.goToSettings.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
+            this.goToSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.goToSettings.IconSize = 32;
+            this.goToSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToSettings.Location = new System.Drawing.Point(0, 680);
+            this.goToSettings.Name = "goToSettings";
+            this.goToSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.goToSettings.Size = new System.Drawing.Size(230, 60);
+            this.goToSettings.TabIndex = 104;
+            this.goToSettings.Text = "Настройки";
+            this.goToSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToSettings, "Перейти на страницу данных сотрудников");
+            this.goToSettings.UseVisualStyleBackColor = true;
+            this.goToSettings.Click += new System.EventHandler(this.goToSettings_Click);
             // 
             // MainForm
             // 
@@ -380,12 +446,14 @@ namespace HiltonCompany
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuPanel.ResumeLayout(false);
+            this.menuPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainLogo)).EndInit();
             this.headPanel.ResumeLayout(false);
             this.headPanel.PerformLayout();
-            this.helloPanel.ResumeLayout(false);
-            this.helloPanel.PerformLayout();
+            this.loginPanel.ResumeLayout(false);
+            this.loginPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -397,8 +465,8 @@ namespace HiltonCompany
         private System.Windows.Forms.Panel headPanel;
         private FontAwesome.Sharp.IconButton goToMaximizedApp;
         private FontAwesome.Sharp.IconButton goToExitApp;
-        private System.Windows.Forms.Panel helloPanel;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel loginPanel;
+        private System.Windows.Forms.Label myName;
         private System.Windows.Forms.Label label4;
         private FontAwesome.Sharp.IconButton goToLogOut;
         private FontAwesome.Sharp.IconButton goToEmployees;
@@ -409,6 +477,10 @@ namespace HiltonCompany
         private System.Windows.Forms.PictureBox mainLogo;
         private FontAwesome.Sharp.IconButton goToLogIn;
         private System.Windows.Forms.Label logoLabel;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label timerLabel;
+        private System.Windows.Forms.Timer timer;
+        private FontAwesome.Sharp.IconButton goToSettings;
     }
 }
 

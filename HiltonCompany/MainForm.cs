@@ -12,8 +12,11 @@ namespace HiltonCompany
 {
     public partial class MainForm : Form
     {
+        public static string UserID { get; set; }
         public static string UserName { get; set; }
-        public static string UID { get; set; }
+        public static string DataSource = "localhost";
+        public static string InitialCatalog = "HiltonCompany";
+        Button lastUsedButton { get; set; }
 
         private int x = 0; 
         private int y = 0;
@@ -21,6 +24,7 @@ namespace HiltonCompany
         public MainForm()
         {
             InitializeComponent();
+            lastUsedButton = goToHome;
             OpenMainPage();
         }
 
@@ -31,10 +35,9 @@ namespace HiltonCompany
 
         private void headPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
-                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
-
+                Location = new Point(Location.X + (e.X - x), Location.Y + (e.Y - y));
             }
         }
 
@@ -45,7 +48,7 @@ namespace HiltonCompany
 
         private void goToMaximizedApp_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
         public void OpenMainPage()
@@ -70,79 +73,92 @@ namespace HiltonCompany
         {
             Button btSender = (Button)sender;
 
-            goToHome.BackColor = Color.FromArgb(140, 179, 247);
-            goToHome.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            goToHotelRooms.BackColor = Color.FromArgb(140, 179, 247);
-            goToHotelRooms.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            goToOrders.BackColor = Color.FromArgb(140, 179, 247);
-            goToOrders.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            goToGuests.BackColor = Color.FromArgb(140, 179, 247);
-            goToGuests.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            goToEmployees.BackColor = Color.FromArgb(140, 179, 247);
-            goToEmployees.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            goToLogIn.BackColor = Color.FromArgb(17, 77, 151);
-            goToLogIn.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            goToLogIn.ForeColor = Color.FromArgb(255, 255, 255);
-            goToLogIn.IconColor = Color.FromArgb(255, 255, 255);
+            if (Size != new Size (1200, 800)) 
+                Size = new Size(1200, 800);
+            lastUsedButton.BackColor = Color.FromArgb(140, 179, 247);
+            lastUsedButton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            lastUsedButton.Enabled = true;
 
             btSender.BackColor = Color.FromArgb(211, 227, 252);
             btSender.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold);
-            if (btSender.Text == "Войти")
-            {
-                goToLogIn.ForeColor = Color.FromArgb(17, 77, 151);
-                goToLogIn.IconColor = Color.FromArgb(17, 77, 151);
-            }
+            btSender.Enabled = false;
+            if (btSender.Name == "goToSettings")
+                Size = new Size(600, 800);
+
+            lastUsedButton = btSender;
         }
 
         private void mainLogo_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(1200, 800);
             ColorSwitcher(goToHome);
             OpenChildForm(new Home());
         }
 
         private void goToHome_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(1200, 800);
-
             ColorSwitcher(sender);
             OpenChildForm(new Home());
         }
 
         private void goToHotelRooms_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(1200, 800);
-
             ColorSwitcher(sender);
         }
 
         private void goToOrders_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(1200, 800);
-
             ColorSwitcher(sender);
         }
 
         private void goToGuests_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(1200, 800);
-
             ColorSwitcher(sender);
         }
 
         private void goToEmployees_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(1200, 800);
-
             ColorSwitcher(sender);
         }
 
         private void goToLogIn_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(830, 740);
+            Form authorization = new Authorization();
+            this.Hide();
+            authorization.Show();
+        }
 
+        private void goToLogOut_Click(object sender, EventArgs e)
+        {
+            loginPanel.Visible = false;
+            goToLogIn.Visible = true;
+            UserID = null;
+            UserName = null;
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timerLabel.Text = DateTime.Now.ToString();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (UserID != null)
+            {
+                goToLogIn.Visible = false;
+                loginPanel.Visible = true;
+                myName.Text = UserName;
+            }
+            else
+            {
+                goToLogIn.Visible = true;
+                loginPanel.Visible = false;
+            }
+        }
+
+        private void goToSettings_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Settings());
             ColorSwitcher(sender);
-            OpenChildForm(new Authorization());
         }
     }
 }
