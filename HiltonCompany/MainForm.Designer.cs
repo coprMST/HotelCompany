@@ -272,9 +272,9 @@ namespace HiltonCompany
             this.loginPanel.Controls.Add(this.label4);
             this.loginPanel.Controls.Add(this.goToLogOut);
             this.loginPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.loginPanel.Location = new System.Drawing.Point(524, 0);
+            this.loginPanel.Location = new System.Drawing.Point(441, 0);
             this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(356, 60);
+            this.loginPanel.Size = new System.Drawing.Size(439, 60);
             this.loginPanel.TabIndex = 102;
             this.loginPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseDown);
             this.loginPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseMove);
@@ -319,10 +319,10 @@ namespace HiltonCompany
             this.goToLogOut.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToLogOut.IconSize = 32;
             this.goToLogOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToLogOut.Location = new System.Drawing.Point(191, 0);
+            this.goToLogOut.Location = new System.Drawing.Point(240, 0);
             this.goToLogOut.Name = "goToLogOut";
             this.goToLogOut.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
-            this.goToLogOut.Size = new System.Drawing.Size(141, 60);
+            this.goToLogOut.Size = new System.Drawing.Size(200, 60);
             this.goToLogOut.TabIndex = 101;
             this.goToLogOut.Text = "ВЫЙТИ";
             this.goToLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

@@ -30,6 +30,26 @@ namespace HiltonCompany
             goToCheckPassword.Enabled = true;
         }
 
+        private void GetUserName()
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                dataTable = GetData($"select FirstName from Employees where AccountID = '{MainForm.UserID}'");
+                if (dataTable.Rows.Count != 0)
+                    MainForm.UserName = dataTable.Rows[0][0].ToString();
+
+                dataTable = GetData($"select FirstName from Customers where AccountID = '{MainForm.UserID}'");
+                if (dataTable.Rows.Count != 0)
+                    MainForm.UserName = dataTable.Rows[0][0].ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось подключиться к базе данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void goToLogIn_Click(object sender, EventArgs e)
         {
             string login = loginBox.Text.ToLower();
@@ -45,6 +65,16 @@ namespace HiltonCompany
                 if (login.Contains("@"))
                 {
                     dataTable = GetData($"select AccountID from Accounts where Email = '{login}' and [Password] = '{password}'");
+                    if (dataTable.Rows.Count != 0)
+                    {
+                        MainForm.UserID = dataTable.Rows[0][0].ToString();
+                        GetUserName();
+                        goToBackForm();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
@@ -52,8 +82,7 @@ namespace HiltonCompany
                     if (dataTable.Rows.Count != 0)
                     {
                         MainForm.UserID = dataTable.Rows[0][0].ToString();
-                        dataTable = GetData($"select FirstName from Customers where AccountID = '{MainForm.UserID}'");
-                        MainForm.UserName = dataTable.Rows[0][0].ToString();
+                        GetUserName();
                         goToBackForm();
                     }
                     else
@@ -81,33 +110,27 @@ namespace HiltonCompany
             string connectionString = $@"Data Source={MainForm.DataSource};Initial Catalog={MainForm.InitialCatalog};Integrated Security=True";
             
             DataTable dataTable = new DataTable();
-            try
+            using (var connection = new SqlConnection(connectionString))
             {
-                using (var connection = new SqlConnection(connectionString))
+                // Открываем асинхронное соединение с базой данных
+                Task connectionTask = connection.OpenAsync();
+                Task.WaitAll(connectionTask);
+
+                // Если соединение произвелось успешно
+                if (!connectionTask.IsFaulted)
                 {
-                    // Открываем асинхронное соединение с базой данных
-                    Task connectionTask = connection.OpenAsync();
-                    Task.WaitAll(connectionTask);
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandText = cmd;
 
-                    // Если соединение произвелось успешно
-                    if (!connectionTask.IsFaulted)
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        SqlCommand command = connection.CreateCommand();
-                        command.CommandText = cmd;
-
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            SqlDataReader DataRead = null;
-                            DataRead = reader;
-                            dataTable.Load(DataRead);
-                        }
+                        SqlDataReader DataRead = null;
+                        DataRead = reader;
+                        dataTable.Load(DataRead);
                     }
                 }
             }
-            catch
-            {
-                MessageBox.Show("Не удалось подключиться к базе данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
 
             return dataTable;
         }
