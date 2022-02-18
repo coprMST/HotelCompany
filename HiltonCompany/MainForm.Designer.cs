@@ -33,6 +33,7 @@ namespace HiltonCompany
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.workPanel = new System.Windows.Forms.Panel();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.goToSettings = new FontAwesome.Sharp.IconButton();
             this.timerLabel = new System.Windows.Forms.Label();
             this.goToEmployees = new FontAwesome.Sharp.IconButton();
             this.goToGuests = new FontAwesome.Sharp.IconButton();
@@ -51,7 +52,6 @@ namespace HiltonCompany
             this.goToExitApp = new FontAwesome.Sharp.IconButton();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.goToSettings = new FontAwesome.Sharp.IconButton();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainLogo)).BeginInit();
             this.headPanel.SuspendLayout();
@@ -60,6 +60,7 @@ namespace HiltonCompany
             // 
             // workPanel
             // 
+            this.workPanel.AutoScroll = true;
             this.workPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
             this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workPanel.Location = new System.Drawing.Point(230, 60);
@@ -83,6 +84,31 @@ namespace HiltonCompany
             this.menuPanel.Name = "menuPanel";
             this.menuPanel.Size = new System.Drawing.Size(230, 740);
             this.menuPanel.TabIndex = 7;
+            // 
+            // goToSettings
+            // 
+            this.goToSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goToSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.goToSettings.FlatAppearance.BorderSize = 0;
+            this.goToSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goToSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
+            this.goToSettings.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.goToSettings.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
+            this.goToSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.goToSettings.IconSize = 32;
+            this.goToSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToSettings.Location = new System.Drawing.Point(0, 680);
+            this.goToSettings.Name = "goToSettings";
+            this.goToSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.goToSettings.Size = new System.Drawing.Size(230, 60);
+            this.goToSettings.TabIndex = 104;
+            this.goToSettings.Text = "Настройки";
+            this.goToSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToSettings, "Настройки приложения");
+            this.goToSettings.UseVisualStyleBackColor = true;
+            this.goToSettings.Click += new System.EventHandler(this.goToSettings_Click);
             // 
             // timerLabel
             // 
@@ -285,11 +311,11 @@ namespace HiltonCompany
             this.myName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.myName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
             this.myName.Location = new System.Drawing.Point(2, 30);
-            this.myName.MaximumSize = new System.Drawing.Size(200, 88);
+            this.myName.MaximumSize = new System.Drawing.Size(200, 24);
             this.myName.Name = "myName";
-            this.myName.Size = new System.Drawing.Size(100, 24);
+            this.myName.Size = new System.Drawing.Size(114, 24);
             this.myName.TabIndex = 4;
-            this.myName.Text = "Евгений!";
+            this.myName.Text = "UserName!";
             this.myName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseDown);
             this.myName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headPanel_MouseMove);
             // 
@@ -407,31 +433,6 @@ namespace HiltonCompany
             // 
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // goToSettings
-            // 
-            this.goToSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.goToSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.goToSettings.FlatAppearance.BorderSize = 0;
-            this.goToSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
-            this.goToSettings.IconChar = FontAwesome.Sharp.IconChar.EllipsisV;
-            this.goToSettings.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
-            this.goToSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.goToSettings.IconSize = 32;
-            this.goToSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToSettings.Location = new System.Drawing.Point(0, 680);
-            this.goToSettings.Name = "goToSettings";
-            this.goToSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.goToSettings.Size = new System.Drawing.Size(230, 60);
-            this.goToSettings.TabIndex = 104;
-            this.goToSettings.Text = "Настройки";
-            this.goToSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.toolTip.SetToolTip(this.goToSettings, "Перейти на страницу данных сотрудников");
-            this.goToSettings.UseVisualStyleBackColor = true;
-            this.goToSettings.Click += new System.EventHandler(this.goToSettings_Click);
             // 
             // MainForm
             // 

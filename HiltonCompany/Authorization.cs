@@ -30,26 +30,6 @@ namespace HiltonCompany
             goToCheckPassword.Enabled = true;
         }
 
-        private void GetUserName()
-        {
-            DataTable dataTable = new DataTable();
-
-            try
-            {
-                dataTable = GetData($"select FirstName from Employees where AccountID = '{MainForm.UserID}'");
-                if (dataTable.Rows.Count != 0)
-                    MainForm.UserName = dataTable.Rows[0][0].ToString();
-
-                dataTable = GetData($"select FirstName from Customers where AccountID = '{MainForm.UserID}'");
-                if (dataTable.Rows.Count != 0)
-                    MainForm.UserName = dataTable.Rows[0][0].ToString();
-            }
-            catch
-            {
-                MessageBox.Show("Не удалось подключиться к базе данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void goToLogIn_Click(object sender, EventArgs e)
         {
             string login = loginBox.Text.ToLower();
@@ -62,34 +42,49 @@ namespace HiltonCompany
                 MessageBox.Show("Для авторизации введите пароль", "Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
-                if (login.Contains("@"))
+                try
                 {
-                    dataTable = GetData($"select AccountID from Accounts where Email = '{login}' and [Password] = '{password}'");
-                    if (dataTable.Rows.Count != 0)
+                    if (login.Contains("@"))
                     {
-                        MainForm.UserID = dataTable.Rows[0][0].ToString();
-                        GetUserName();
-                        goToBackForm();
+                        dataTable = GetData($"select AccountID, AccessType from Accounts where [Email] = '{login}' and [Password] = '{password}'");
+                        if (dataTable.Rows.Count != 0)
+                        {
+                            MainForm.UserID = dataTable.Rows[0][0].ToString();
+                            MainForm.UserAccess = Convert.ToInt32(dataTable.Rows[0][1].ToString());
+                            dataTable = GetData($"if exists (select FirstName from Employees where AccountID = '{MainForm.UserID}') begin select FirstName from Employees where AccountID = '{MainForm.UserID}' end else begin select FirstName from Customers where AccountID = '{MainForm.UserID}' end");
+                            MainForm.UserName = dataTable.Rows[0][0].ToString();
+
+                            goToBackForm();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dataTable = GetData($"select AccountID, AccessType from Accounts where [PhoneNumber] = '{login}' and [Password] = '{password}'");
+                        if (dataTable.Rows.Count != 0)
+                        {
+                            MainForm.UserID = dataTable.Rows[0][0].ToString();
+                            MainForm.UserAccess = Convert.ToInt32(dataTable.Rows[0][1].ToString());
+                            dataTable = GetData($"if exists (select FirstName from Employees where AccountID = '{MainForm.UserID}') begin select FirstName from Employees where AccountID = '{MainForm.UserID}' end else begin select FirstName from Customers where AccountID = '{MainForm.UserID}' end");
+                            MainForm.UserName = dataTable.Rows[0][0].ToString();
+
+                            goToBackForm();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
+
                 }
-                else
+                catch
                 {
-                    dataTable = GetData($"select AccountID from Accounts where PhoneNumber = '{login}' and [Password] = '{password}'");
-                    if (dataTable.Rows.Count != 0)
-                    {
-                        MainForm.UserID = dataTable.Rows[0][0].ToString();
-                        GetUserName();
-                        goToBackForm();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Не удалось подключиться к базе данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
         }
 
@@ -130,7 +125,6 @@ namespace HiltonCompany
                     }
                 }
             }
-            
 
             return dataTable;
         }

@@ -29,11 +29,14 @@ namespace HiltonCompany
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.goToSave = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.dataSource = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.initialCatalog = new System.Windows.Forms.TextBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.goToStandartSettings = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // goToSave
@@ -57,6 +60,7 @@ namespace HiltonCompany
             this.goToSave.Text = "Спаси и сохрани";
             this.goToSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToSave, "Сохранить настройки");
             this.goToSave.UseVisualStyleBackColor = false;
             this.goToSave.Click += new System.EventHandler(this.goToSave_Click);
             // 
@@ -81,6 +85,7 @@ namespace HiltonCompany
             this.dataSource.Size = new System.Drawing.Size(284, 31);
             this.dataSource.TabIndex = 14;
             this.dataSource.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip.SetToolTip(this.dataSource, "Название подключаемого к базе данных");
             // 
             // label2
             // 
@@ -103,6 +108,32 @@ namespace HiltonCompany
             this.initialCatalog.Size = new System.Drawing.Size(284, 31);
             this.initialCatalog.TabIndex = 16;
             this.initialCatalog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip.SetToolTip(this.initialCatalog, "Название базы данных при подключении к базе данных");
+            // 
+            // goToStandartSettings
+            // 
+            this.goToStandartSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.goToStandartSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goToStandartSettings.FlatAppearance.BorderSize = 0;
+            this.goToStandartSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goToStandartSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToStandartSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
+            this.goToStandartSettings.IconChar = FontAwesome.Sharp.IconChar.Cross;
+            this.goToStandartSettings.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
+            this.goToStandartSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.goToStandartSettings.IconSize = 32;
+            this.goToStandartSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToStandartSettings.Location = new System.Drawing.Point(109, 395);
+            this.goToStandartSettings.Name = "goToStandartSettings";
+            this.goToStandartSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.goToStandartSettings.Size = new System.Drawing.Size(177, 60);
+            this.goToStandartSettings.TabIndex = 18;
+            this.goToStandartSettings.Text = "Сбросить";
+            this.goToStandartSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToStandartSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.goToStandartSettings, "Сбросить настройки и сохранить");
+            this.goToStandartSettings.UseVisualStyleBackColor = false;
+            this.goToStandartSettings.Click += new System.EventHandler(this.goToStandartSettings_Click);
             // 
             // Settings
             // 
@@ -110,6 +141,7 @@ namespace HiltonCompany
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(400, 740);
+            this.Controls.Add(this.goToStandartSettings);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.initialCatalog);
             this.Controls.Add(this.label1);
@@ -131,5 +163,7 @@ namespace HiltonCompany
         private System.Windows.Forms.TextBox dataSource;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox initialCatalog;
+        private System.Windows.Forms.ToolTip toolTip;
+        private FontAwesome.Sharp.IconButton goToStandartSettings;
     }
 }

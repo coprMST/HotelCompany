@@ -28,5 +28,13 @@ namespace HiltonCompany
             MainForm.InitialCatalog = initialCatalog.Text.Trim();
             MainForm.DataSource = dataSource.Text.Trim();
         }
+
+        private void goToStandartSettings_Click(object sender, EventArgs e)
+        {
+            initialCatalog.Text = "HiltonCompany";
+            dataSource.Text = "localhost";
+            MainForm.InitialCatalog = initialCatalog.Text.Trim();
+            MainForm.DataSource = dataSource.Text.Trim();
+        }
     }
 }

@@ -14,6 +14,8 @@ namespace HiltonCompany
     {
         public static string UserID { get; set; }
         public static string UserName { get; set; }
+        public static int UserAccess { get; set; }
+
         public static string DataSource = "localhost";
         public static string InitialCatalog = "HiltonCompany";
         Button lastUsedButton { get; set; }
@@ -62,7 +64,6 @@ namespace HiltonCompany
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            workPanel.AutoScroll = true;
             workPanel.Controls.Add(childForm);
             workPanel.Tag = childForm;
             childForm.BringToFront();
@@ -84,6 +85,8 @@ namespace HiltonCompany
             btSender.Enabled = false;
             if (btSender.Name == "goToSettings")
                 Size = new Size(600, 800);
+            if (btSender.Name == "goToHotelRooms")
+                Size = new Size(1393, 800);
 
             lastUsedButton = btSender;
         }
@@ -102,6 +105,7 @@ namespace HiltonCompany
 
         private void goToHotelRooms_Click(object sender, EventArgs e)
         {
+            OpenChildForm(new Rooms());
             ColorSwitcher(sender);
         }
 
@@ -125,6 +129,10 @@ namespace HiltonCompany
             Form authorization = new Authorization();
             this.Hide();
             authorization.Show();
+
+            UserID = null;
+            UserName = null;
+            UserAccess = 0;
         }
 
         private void goToLogOut_Click(object sender, EventArgs e)
@@ -133,6 +141,7 @@ namespace HiltonCompany
             goToLogIn.Visible = true;
             UserID = null;
             UserName = null;
+            UserAccess = 0;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -147,6 +156,19 @@ namespace HiltonCompany
                 goToLogIn.Visible = false;
                 loginPanel.Visible = true;
                 myName.Text = UserName;
+                
+                if (UserAccess == 1)
+                {
+                    goToEmployees.Visible = true;
+                    goToGuests.Visible = true;
+                    goToOrders.Visible = true;
+                }
+                else
+                {
+                    goToEmployees.Visible = false;
+                    goToGuests.Visible = false;
+                    goToOrders.Visible = false;
+                }
             }
             else
             {

@@ -163,11 +163,11 @@ namespace HiltonCompany
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tempus Sans ITC", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(77)))), ((int)(((byte)(151)))));
-            this.label1.Location = new System.Drawing.Point(212, 310);
+            this.label1.Location = new System.Drawing.Point(261, 310);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 24);
+            this.label1.Size = new System.Drawing.Size(69, 24);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Телефон/Почта";
+            this.label1.Text = "Логин";
             // 
             // loginBox
             // 
@@ -199,7 +199,7 @@ namespace HiltonCompany
             this.goToMaximizedApp.Name = "goToMaximizedApp";
             this.goToMaximizedApp.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
             this.goToMaximizedApp.Size = new System.Drawing.Size(60, 60);
-            this.goToMaximizedApp.TabIndex = 26;
+            this.goToMaximizedApp.TabIndex = 8;
             this.goToMaximizedApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.toolTip.SetToolTip(this.goToMaximizedApp, "Свернуть приложение");
             this.goToMaximizedApp.UseVisualStyleBackColor = true;
@@ -245,9 +245,9 @@ namespace HiltonCompany
             this.goToBack.Name = "goToBack";
             this.goToBack.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
             this.goToBack.Size = new System.Drawing.Size(60, 60);
-            this.goToBack.TabIndex = 27;
+            this.goToBack.TabIndex = 6;
             this.goToBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.toolTip.SetToolTip(this.goToBack, "Свернуть приложение");
+            this.toolTip.SetToolTip(this.goToBack, "Вернуться на главную страницу");
             this.goToBack.UseVisualStyleBackColor = true;
             this.goToBack.Click += new System.EventHandler(this.goToBack_Click);
             // 
