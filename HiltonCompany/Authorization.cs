@@ -84,7 +84,6 @@ namespace HiltonCompany
                 {
                     MessageBox.Show("Не удалось подключиться к базе данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
 

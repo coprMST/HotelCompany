@@ -52,6 +52,7 @@ namespace HiltonCompany
             this.goToExitApp = new FontAwesome.Sharp.IconButton();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainLogo)).BeginInit();
             this.headPanel.SuspendLayout();
@@ -482,6 +483,7 @@ namespace HiltonCompany
         private System.Windows.Forms.Label timerLabel;
         private System.Windows.Forms.Timer timer;
         private FontAwesome.Sharp.IconButton goToSettings;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

@@ -111,6 +111,7 @@ namespace HiltonCompany
 
         private void goToOrders_Click(object sender, EventArgs e)
         {
+            OpenChildForm(new MyOrders());
             ColorSwitcher(sender);
         }
 
@@ -156,19 +157,22 @@ namespace HiltonCompany
                 goToLogIn.Visible = false;
                 loginPanel.Visible = true;
                 myName.Text = UserName;
-                
+
                 if (UserAccess == 1)
                 {
                     goToEmployees.Visible = true;
                     goToGuests.Visible = true;
-                    goToOrders.Visible = true;
                 }
                 else
                 {
                     goToEmployees.Visible = false;
                     goToGuests.Visible = false;
-                    goToOrders.Visible = false;
                 }
+
+                if (UserAccess == 0)
+                    goToOrders.Visible = true;
+                else
+                    goToOrders.Visible = false;
             }
             else
             {
