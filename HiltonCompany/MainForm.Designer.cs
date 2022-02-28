@@ -311,7 +311,7 @@ namespace HiltonCompany
             this.myName.AutoSize = true;
             this.myName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.myName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
-            this.myName.Location = new System.Drawing.Point(2, 30);
+            this.myName.Location = new System.Drawing.Point(2, 27);
             this.myName.MaximumSize = new System.Drawing.Size(200, 24);
             this.myName.Name = "myName";
             this.myName.Size = new System.Drawing.Size(114, 24);
@@ -325,7 +325,7 @@ namespace HiltonCompany
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
-            this.label4.Location = new System.Drawing.Point(3, 12);
+            this.label4.Location = new System.Drawing.Point(3, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 18);
             this.label4.TabIndex = 3;
